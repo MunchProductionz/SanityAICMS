@@ -15,8 +15,7 @@ interface Query {
 
 const FairtalePage = ({ fairytale }: PageProps) => {
   // destructure the fairytale object
-  const { title } = fairytale
-
+  const { title, story } = fairytale
   const [storyImage, setStoryImage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -27,11 +26,38 @@ const FairtalePage = ({ fairytale }: PageProps) => {
     // Set the storyImage state to the text property of the response object
     // If the response object does not have a text property, log an error to the console
 
-    const prompt = `I am a placeholder prompt, I should be replaced with something more interesting`
+    function truncate(str, n){
+      return (str.length > n) ? str.slice(0, n-1) : str;
+    };
+
+    const truncatedStory = truncate(story, 300)
+    const imagePrompt = `Photorealistic image with fairytale style, with the following story: ${truncatedStory}.`
+
+    const res = await fetch('/api/openai-image', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ prompt: imagePrompt }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.text) {
+          setStoryImage(data.text)
+          setIsLoading(false)
+        } else {
+          console.log('No text property in response object.')
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+        setIsLoading(true)
+      })
   }
 
   const handleGenerateImage = async () => {
     // Add your code here
+    generateNewStoryImage()
   }
 
   return (

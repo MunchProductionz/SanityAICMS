@@ -4,3 +4,11 @@
 
 Read more @
 https://noa-ai-workshop.vercel.app/
+
+Template by:
+- [Github](https://github.com/thenorthalliance/AI-Workshop)
+
+Project powered by:
+- Next.js
+- Sanity
+- OpenAI
