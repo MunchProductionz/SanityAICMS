@@ -15,7 +15,13 @@ Project powered by:
 
 ---
 
-Remember to add .env file containing:
+## Steps to run the code
+
+1. Create a Sanity account and a Sanity project to get the `projectId`.
+
+2. Create an OpenAI account to get the `openai api key`.
+
+3. Add .env file in the root directory containing:
 - NEXT_PUBLIC_SANITY_PROJECT_ID="ENTER SANITY PROJECT ID HERE"
 - NEXT_PUBLIC_SANITY_DATASET="production"
 - NEXT_PUBLIC_SANITY_PROJECT_TITLE="AI-Workshop"
@@ -24,3 +30,11 @@ Remember to add .env file containing:
 - NEXT_PUBLIC_CHEAT_CODE_1=""
 - NEXT_PUBLIC_CHEAT_CODE_2=""
 - NEXT_PUBLIC_CHEAT_CODE_3=""
+
+4. Run `npm install` in terminal while in the root directory.
+
+5. Use `npm run dev` to start the development server.
+
+6. Navigate to your Sanity studio management page and select your project, navigate to the API tab and add `http://localhost:3000/studio` to the CORS Origins list.
+
+7. Open your web browser at `http://localhost:3000/studio`.
